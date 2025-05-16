@@ -1,0 +1,53 @@
+/* main.css - Custom styles for Davide Negri's Personal Website */
+
+/* Esempio di personalizzazione aggiuntiva, puoi aggiungere altro qui */
+/* Ad esempio, per ombreggiature personalizzate o animazioni */
+
+/* Esempio: bordo personalizzato per immagini del carosello */
+#carouselImage {
+    border: 3px solid #e5e7eb; /* Tailwind gray-200 */
+    cursor: pointer;
+}
+
+/* Fullscreen overlay for carousel image */
+#carouselOverlay {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+}
+#carouselOverlay.active {
+    display: flex;
+}
+#carouselOverlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 1rem;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+}
+#carouselOverlay .close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(255,255,255,0.8);
+    border: none;
+    border-radius: 9999px;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #222;
+    transition: background 0.2s;
+}
+#carouselOverlay .close-btn:hover {
+    background: #fff;
+}
