@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pysnake - Davide Negri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="bg-gray-50 pb-20">
+    <header class="bg-gray-900 text-white py-12 text-center">
+        <h1 class="text-4xl font-bold">🐍 Python is a Snake</h1>
+        <p class="text-lg mt-2 italic">A classic Snake game implementation using Pygame</p>
+    </header>
+    <main class="max-w-4xl mx-auto mt-8 bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-100">
+        <a href="../index.html" class="text-blue-600 hover:underline mb-8 inline-block font-medium">← Back to Home</a>
+
+        <div class="prose prose-blue max-w-none text-gray-800">
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🎮 Project Description</h2>
+            <p class="mb-6 leading-relaxed">
+                This project is an implementation of the classic <strong>Snake</strong> game in Python using the
+                <strong>Pygame</strong> library. It serves as a practical exercise for 2D game programming, focusing on
+                handling inputs, rendering, and game logic.
+            </p>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-8">
+                <img src="../assets/images/projects/Snake_screenshot.png" alt="Pysnake Gameplay"
+                    class="rounded-lg shadow w-full">
+                <p class="text-sm text-gray-500 mt-2 text-center">Gameplay Screenshot</p>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">✨ Core Features</h2>
+            <ul class="list-disc list-inside space-y-3 mb-8 text-gray-700">
+                <li><strong>Grid-based Movement:</strong> Discrete steps for pixel-perfect classic feel.</li>
+                <li><strong>Warping Mechanics:</strong> Screen wraparound effects for continuous gameplay.</li>
+                <li><strong>Dynamic Growth:</strong> Snake grows as it consumes randomly generated food.</li>
+                <li><strong>High Score Persistence:</strong> Track your best performances across sessions.</li>
+                <li><strong>Collision Detection:</strong> Real-time detection for self-collision and environment
+                    interactions.</li>
+            </ul>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">⚙️ Technical Overview</h2>
+            <div class="bg-blue-50 p-6 rounded-lg mb-8">
+                <p class="mb-4">The game architecture is built on a modular foundation:</p>
+                <ul class="list-disc list-inside space-y-2 text-sm text-blue-900">
+                    <li><strong>Game Loop:</strong> Orchestrates event handling, logic ticks, and rendering at a
+                        constant framerate.</li>
+                    <li><strong>Entity Management:</strong> Separate modules for Snake, Food, and Game Settings.</li>
+                    <li><strong>Input Validation:</strong> Smart input handling to prevent immediate 180-degree turns.
+                    </li>
+                    <li><strong>Modular Codebase:</strong> Clear separation between <code>game.py</code>,
+                        <code>snake.py</code>, and <code>settings.py</code>.</li>
+                </ul>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🛠️ Tech Stack</h2>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Python 3.8+</span>
+                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">Pygame</span>
+                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">Git</span>
+            </div>
+
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mt-12">
+                <p class="text-amber-700 text-sm">
+                    <strong>🕹️ How to Play:</strong> Use Arrow keys or WASD to move. Avoid hitting your own body while
+                    aiming for the highest score!
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-12 text-gray-500 text-sm italic">
+        <p>A practical project for mastering 2D game loops and Python logic.</p>
+        <p class="mt-2 text-gray-400">© 2026 Davide Negri</p>
+    </footer>
+</body>
+
+</html>
