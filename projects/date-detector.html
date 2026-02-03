@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Quality Detector - Davide Negri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="bg-gray-50 pb-20">
+    <header class="bg-gray-900 text-white py-12 text-center">
+        <h1 class="text-4xl font-bold">🌴 Date Quality Detector</h1>
+        <p class="text-lg mt-2 italic">Deep Learning for Fruit Quality Classification</p>
+    </header>
+    <main class="max-w-4xl mx-auto mt-8 bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-100">
+        <a href="../index.html" class="text-blue-600 hover:underline mb-8 inline-block font-medium">← Back to Home</a>
+
+        <div class="prose prose-blue max-w-none text-gray-800">
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">📌 Project Description</h2>
+            <p class="mb-6 leading-relaxed">
+                This project implements a <strong>Computer Vision</strong> system based on <strong>Deep
+                    Learning</strong> designed for the automatic classification of date quality. The primary focus is
+                identifying <strong>"Loose Skin"</strong> (skin detachment), a common quality defect, distinguishing
+                deteriorated fruits from healthy ones.
+            </p>
+            <p class="mb-8">
+                The application integrates a neural model trained in a cloud environment (Google Colab) with an
+                interactive web interface developed in <strong>Streamlit</strong> for local inference.
+            </p>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🧠 Model Architecture</h2>
+            <p class="mb-8 leading-relaxed">
+                To maximize accuracy with an optimized dataset, <strong>Transfer Learning</strong> was used. Starting
+                from a network pre-trained on ImageNet and adding specific final layers to adapt the model to the
+                available dataset.
+            </p>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🛠️ Technical Challenges</h2>
+            <div class="space-y-4 mb-8">
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-900">Cross-Version Compatibility</h4>
+                    <p class="text-blue-800 text-sm">Resolved incompatibility between Keras 3 (Colab) and Keras 2 (local
+                        environment) by loading weights-only via layer name mapping.</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-900">User Experience (UX)</h4>
+                    <p class="text-blue-800 text-sm">Enhanced the Streamlit interface with custom CSS for a clean
+                        design, centered buttons, and clear visual feedback.</p>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">📈 Future Developments</h2>
+            <ul class="list-disc list-inside space-y-2 mb-8 text-gray-700">
+                <li><strong>Fine-tuning:</strong> Unlocking late blocks of DenseNet to specialize the model on specific
+                    date textures.</li>
+                <li><strong>Data Augmentation:</strong> Increasing dataset variety to handle different lighting
+                    conditions.</li>
+            </ul>
+
+            <div class="bg-gray-100 p-8 rounded-xl text-center border-2 border-dashed border-gray-300">
+                <h3 class="text-xl font-bold mb-4">Try the Live Demo</h3>
+                <a href="https://datespredictmodel.streamlit.app/" target="_blank"
+                    class="inline-flex items-center bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition shadow-lg">
+                    <img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Streamlit"
+                        class="mr-2">
+                    Launch App
+                </a>
+            </div>
+
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mt-12">
+                <p class="text-amber-700 text-sm">
+                    <strong>🔒 Code Note:</strong> For academic compliance, the source code and instances are private.
+                    The application demo remains publicly available.
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-12 text-gray-500 text-sm italic">
+        <p>A.A. 2024/2025 - Corso di Deep Learning</p>
+        <p class="mt-2 text-gray-400">© 2026 Davide Negri</p>
+    </footer>
+</body>
+
+</html>

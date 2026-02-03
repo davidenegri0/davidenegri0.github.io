@@ -1,0 +1,55 @@
+# 🌴 Date Quality Detector
+
+### Progetto di Deep Learning - Corso di Laurea Magistrale
+**Sviluppata da:** Sara Tullini, Negri Davide & Chesta Lorenzo
+
+---
+
+## 📌 Descrizione del Progetto
+Questo repository ospita un sistema di visione artificiale basato su **Deep Learning** progettato per la classificazione automatica della qualità dei datteri. Il focus principale è l'identificazione della **"Loose Skin"** (distacco della pelle), un difetto qualitativo comune, distinguendo i frutti deteriorati da quelli sani.
+
+L'applicazione integra un modello neurale addestrato in ambiente cloud (Google Colab) con un'interfaccia web interattiva sviluppata in **Streamlit** per l'inferenza locale.
+
+
+
+---
+
+## 🧠 Architettura del Modello
+Per massimizzare l'accuratezza con un dataset ottimizzato, è stata utilizzata la tecnica del **Transfer Learning**. Partendo da una rete preaddestrata su ImageNet e aggiungendo layer specifici finali per adattare il modello al dataset a disposizione.
+
+
+
+---
+
+## 🛠️ Sfide Tecniche e Soluzioni
+Durante lo sviluppo sono state implementate soluzioni specifiche per superare ostacoli di portabilità:
+
+1.  **Compatibilità Cross-Version:** È stata risolta l'incompatibilità tra Keras 3 (usato da Colab) e Keras 2 (ambiente locale) con il caricamento dei soli pesi (`weights-only`) tramite mappatura per nome dei layer.
+2.  **User Experience (UX):** L'interfaccia Streamlit è stata potenziata con CSS personalizzato per offrire un design pulito, pulsanti centrati e feedback visivi chiari sui risultati dell'analisi.
+
+---
+
+## 📂 Struttura del Repository
+* `app.py`: Il cuore dell'applicazione web Streamlit.
+* `pesi_finali.h5`: File contenente i pesi del modello addestrato.
+* `W_i_Datteri_final.ipynb`: Notebook Jupyter con il codice di training originale.
+* `requirements.txt`: Elenco delle librerie Python necessarie (TensorFlow, Streamlit, Pillow, Numpy).
+
+---
+
+## 📈 Sviluppi Futuri
+Sebbene il modello sia funzionale, sono previsti miglioramenti per aumentarne la precisione:
+
+- Fine-tuning: Sblocco degli ultimi blocchi di DenseNet per specializzare il modello sulla texture specifica dei datteri.
+- Data Augmentation: Incremento della varietà del dataset per gestire diverse condizioni di illuminazione.
+
+---
+
+## 🔒 Nota sul Codice
+*Per rispettare le policy accademiche e permettere il riutilizzo didattico del progetto, il codice sorgente e le istanze specifiche del problema sono mantenuti in un repository privato. La demo dell'appllicazione è comunque disponibile*
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://datespredictmodel.streamlit.app/)
+
+---
+*A.A. 2024/2025 - Corso di Deep Learning*
+
+

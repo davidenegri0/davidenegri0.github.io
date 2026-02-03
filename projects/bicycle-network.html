@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicycle Network Design - Davide Negri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="bg-gray-100 pb-20">
+    <header class="bg-gray-900 text-white py-12 text-center">
+        <h1 class="text-4xl font-bold">🚲 Bicycle Network Design</h1>
+        <p class="text-lg mt-2 italic">Combinatorial Optimization for Urban Planning</p>
+    </header>
+    <main class="max-w-4xl mx-auto mt-8 bg-white p-8 md:p-12 rounded-xl shadow-lg">
+        <a href="../index.html" class="text-blue-600 hover:underline mb-8 inline-block font-medium">← Back to Home</a>
+
+        <div class="prose prose-blue max-w-none text-gray-800">
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">📌 Project Overview</h2>
+            <p class="mb-6 leading-relaxed">
+                The project addresses a <strong>Network Design</strong> problem in urban planning. The goal is to design
+                a connected bicycle network that maximizes total attractiveness (<em>Likeness</em>) for citizens, while
+                respecting a strict budget constraint.
+                The problem was modeled as a graph optimization problem, solved through the implementation of several
+                advanced heuristics and meta-heuristics.
+            </p>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">⚙️ Methodology & Algorithms</h2>
+            <p class="mb-4">Four approaches were implemented and compared:</p>
+            <ul class="list-disc list-inside space-y-3 mb-8">
+                <li><strong>Greedy Algorithm:</strong> A constructive technique selecting edges with the best
+                    attractiveness/cost ratio.</li>
+                <li><strong>Local Search:</strong> An improvement algorithm seeking local optima in the neighborhood of
+                    the initial solution.</li>
+                <li><strong>G.R.A.S.P.:</strong> Introduces a stochastic component to escape local optima.</li>
+                <li><strong>LNS (Large Neighborhood Search):</strong> The most advanced approach based on the
+                    <strong>Destroy & Repair</strong> strategy.</li>
+            </ul>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">📊 Visual Analysis & Results</h2>
+            <div class="space-y-12">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Problem Instance (Input)</h3>
+                    <img src="../assets/images/projects/grafi_salvati/grafo_iniziale.png" alt="Initial Graph"
+                        class="rounded-lg shadow w-full">
+                    <p class="text-sm text-gray-500 mt-2 text-center">Caption: Input undirected graph representing
+                        potential connections.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-center">Greedy Approach</h3>
+                        <img src="../assets/images/projects/grafi_salvati/greedy.png" alt="Greedy Solution"
+                            class="rounded-lg shadow w-full">
+                        <p class="text-xs text-gray-500 mt-2 text-center">Likeness: 129</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-center">LNS (Presumed Global Optimum)</h3>
+                        <img src="../assets/images/projects/grafi_salvati/grafo_finale_LNS.png" alt="LNS Solution"
+                            class="rounded-lg shadow w-full">
+                        <p class="text-xs text-gray-500 mt-2 text-center">Likeness: 154</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Network Robustness (Frequency Analysis)</h3>
+                    <img src="../assets/images/projects/grafi_salvati/istogramma.png" alt="Histogram"
+                        class="rounded-lg shadow w-full">
+                    <p class="text-sm text-gray-500 mt-2 text-center">Caption: Edges with 100% frequency represent the
+                        fundamental "backbones" of the network.</p>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mt-12 mb-6">🛠️ Tech Stack</h2>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Python</span>
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">NetworkX</span>
+                <span
+                    class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">Matplotlib</span>
+                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">Numpy</span>
+            </div>
+
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mt-8">
+                <p class="text-amber-700 text-sm">
+                    <strong>🔒 Code Note:</strong> To comply with academic policies, the source code and instances are
+                    kept in a private repository.
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-12 text-gray-500 text-sm">
+        <p>A.A. 2024/2025 - corso di Ricerca Operativa</p>
+        <p class="mt-2">&copy; 2026 Davide Negri</p>
+    </footer>
+</body>
+
+</html>
