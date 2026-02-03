@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef'sKiss FoodBlog - Davide Negri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="bg-gray-50 pb-20">
+    <header class="bg-gray-900 text-white py-12 text-center">
+        <h1 class="text-4xl font-bold">🍕 Chef'sKiss FoodBlog</h1>
+        <p class="text-lg mt-2 italic">A Comprehensive Culinary & Restaurant Platform</p>
+    </header>
+    <main class="max-w-4xl mx-auto mt-8 bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-100">
+        <a href="../index.html" class="text-blue-600 hover:underline mb-8 inline-block font-medium">← Back to Home</a>
+
+        <div class="prose prose-blue max-w-none text-gray-800">
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">📌 Project Overview</h2>
+            <p class="mb-6 leading-relaxed">
+                <strong>Chef'sKiss</strong> is a robust web platform designed for culinary enthusiasts and restaurant
+                management. It provides a complete system for recipe sharing, restaurant reviews, and a sophisticated
+                reservation system backed by a comprehensive database.
+            </p>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-8">
+                <img src="../assets/images/projects/homepageScreen.png" alt="Chef'sKiss Homepage"
+                    class="rounded-lg shadow w-full">
+                <p class="text-sm text-gray-500 mt-2 text-center">Platform Homepage Overview</p>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">👥 User Roles & Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-blue-900 mb-2">Private User</h3>
+                    <p class="text-sm text-blue-800">Publish and rate recipes, build a culinary profile with custom
+                        avatars.</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-green-900 mb-2">Customer</h3>
+                    <p class="text-sm text-green-800">Book tables, manage reservations, and earn "Trusted Reviewer"
+                        status.</p>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-orange-900 mb-2">Chef</h3>
+                    <p class="text-sm text-orange-800">Manage professional profiles, curricula, and propose signature
+                        dishes.</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-purple-900 mb-2">Restaurateur</h3>
+                    <p class="text-sm text-purple-800">Manage restaurant chains, headquarters, staff, and menus.</p>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-8">
+                <img src="../assets/images/projects/recipeScreen.png" alt="Recipe Page"
+                    class="rounded-lg shadow w-full">
+                <p class="text-sm text-gray-500 mt-2 text-center">Interactive Recipe Detail View</p>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🚀 CI/CD & Technical Infrastructure</h2>
+            <p class="mb-6">The project follows modern software engineering practices with a focus on automation and
+                reliability:</p>
+            <ul class="list-disc list-inside space-y-3 mb-8 text-gray-700">
+                <li><strong>Pipeline:</strong> GitHub Actions for automated build, WAR production, and Docker image
+                    publishing.</li>
+                <li><strong>Testing:</strong> Integration and E2E tests using <strong>Testcontainers</strong> and
+                    <strong>Selenium</strong>.</li>
+                <li><strong>Containerization:</strong> Multi-container orchestration for the web app and database
+                    services.</li>
+                <li><strong>Reporting:</strong> Automated coverage reports via <strong>JaCoCo</strong> and
+                    <strong>Surefire</strong>.</li>
+            </ul>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🛠️ Tech Stack</h2>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Java 17</span>
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Spring
+                    Boot</span>
+                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">Docker</span>
+                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">Selenium</span>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">GitHub
+                    Actions</span>
+            </div>
+
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mt-12">
+                <p class="text-amber-700 text-sm">
+                    <strong>🔒 Note:</strong> Source code is private for academic compliance. Automatic E2E test scripts
+                    and CI/CD configurations are fully implemented.
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-12 text-gray-500 text-sm italic">
+        <p>A.A. 2024/2025 - Full Stack Development Project</p>
+        <p class="mt-2 text-gray-400">© 2026 Davide Negri</p>
+    </footer>
+</body>
+
+</html>
