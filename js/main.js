@@ -1,7 +1,7 @@
 const images = [
-    { src: 'Foto1.jpg', alt: 'Personal photo 1' },
-    { src: 'Foto2.jpg', alt: 'Personal photo 2' },
-    { src: 'Foto3.jpg', alt: 'Personal photo 3' }
+    { src: 'assets/images/Foto1.jpg', alt: 'Personal photo 1' },
+    { src: 'assets/images/Foto2.jpg', alt: 'Personal photo 2' },
+    { src: 'assets/images/Foto3.jpg', alt: 'Personal photo 3' }
 ];
 let current = 0;
 window.addEventListener('DOMContentLoaded', () => {
