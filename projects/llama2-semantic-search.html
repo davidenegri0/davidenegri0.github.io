@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLaMa 2 Semantic Search - Davide Negri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="bg-gray-50 pb-20">
+    <header class="bg-gray-900 text-white py-12 text-center">
+        <h1 class="text-4xl font-bold">🤖 LLaMa 2 Semantic Search</h1>
+        <p class="text-lg mt-2 italic">Breaking the limits of keyword search with AI</p>
+    </header>
+    <main class="max-w-4xl mx-auto mt-8 bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-100">
+        <a href="../index.html" class="text-blue-600 hover:underline mb-8 inline-block font-medium">← Back to Home</a>
+
+        <div class="prose prose-blue max-w-none text-gray-800">
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">💡 Project Vision</h2>
+            <p class="mb-6 leading-relaxed">
+                Developed as a thesis project at the <strong>University of Ferrara</strong>, this system implements a
+                high-performance semantic document search engine. Unlike traditional keyword-based systems, it
+                understands the <strong>intrinsic meaning</strong> of queries to provide contextually relevant results.
+            </p>
+
+            <div class="bg-gray-50 p-4 rounded-lg mb-8">
+                <img src="../assets/images/projects/Architettura_progetto_tesi.png" alt="Semantic Search Concept"
+                    class="rounded-lg shadow w-full">
+                <p class="text-sm text-gray-500 mt-2 text-center">Conceptual Visualization: Intelligent Document
+                    Organization</p>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🎯 Core Objectives</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-blue-900 mb-2">Semantic Indexing</h3>
+                    <p class="text-xs text-blue-800">Organizing documents via vector embeddings instead of simple text
+                        matching.</p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-indigo-900 mb-2">Intelligent Retrieval</h3>
+                    <p class="text-xs text-indigo-800">Finding the most conceptually related documents using Cosine
+                        Similarity metrics.</p>
+                </div>
+                <div class="bg-teal-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-teal-900 mb-2">Consumer Hardware</h3>
+                    <p class="text-xs text-teal-800">Optimized to run efficiently on mid-range consumer laptops using
+                        4-bit quantization.</p>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🏗️ Technical Architecture</h2>
+            <p class="mb-6">The system is designed with a modular three-tier architecture for maximum portability:</p>
+            <ul class="list-disc list-inside space-y-3 mb-8 text-gray-700">
+                <li><strong>LLaMa 2 (7B-chat):</strong> Meta's next-gen language model used as the core embedding
+                    engine.</li>
+                <li><strong>Quantization & LLaMa.cpp:</strong> Compressing the model from 13GB to 3.9GB to enable local
+                    execution on standard CPUs.</li>
+                <li><strong>Elasticsearch Vector DB:</strong> Utilizing the <strong>kNN (k-Nearest Neighbors)</strong>
+                    algorithm for ultra-fast vector retrieval.</li>
+                <li><strong>LangChain:</strong> Orchestrating the complex workflow from raw document to searchable
+                    vector.</li>
+            </ul>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🛠️ Tech Stack</h2>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Python</span>
+                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">LLaMa 2</span>
+                <span
+                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Elasticsearch</span>
+                <span
+                    class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">LangChain</span>
+                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">Qt (GUI)</span>
+                <span class="bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm font-semibold">Docker</span>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-12">
+                <p class="text-blue-700 text-sm">
+                    <strong>🎓 Thesis Project:</strong> Supervised by Prof. Ing. Mauro Tortonesi. This work demonstrates
+                    the feasibility of localized, private AI for advanced data management.
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-12 text-gray-500 text-sm italic">
+        <p>Università degli Studi di Ferrara - B.Sc. Thesis Project</p>
+        <p class="mt-2 text-gray-400">© 2026 Davide Negri</p>
+    </footer>
+</body>
+
+</html>
