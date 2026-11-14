@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Safety Decision Support - Davide Negri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body class="bg-gray-50 pb-20">
+    <header class="bg-gray-900 text-white py-12 text-center">
+        <h1 class="text-2xl md:text-4xl font-bold max-w-5xl mx-auto px-4 leading-tight">
+            Applicazione di tecniche di Machine Learning per il supporto decisionale ai Piani di Sicurezza delle Acque
+        </h1>
+        <p class="text-lg mt-4 italic text-teal-200">Machine learning for Water Safety Plans</p>
+    </header>
+    <main class="max-w-4xl mx-auto mt-8 bg-white p-8 md:p-12 rounded-xl shadow-lg border border-gray-100">
+        <a href="../index.html" class="text-blue-600 hover:underline mb-8 inline-block font-medium">← Back to Home</a>
+
+        <div class="prose prose-blue max-w-none text-gray-800">
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">💧 Project Overview</h2>
+            <p class="mb-6 leading-relaxed">
+                Water Safety Plans depend on interpreting monitoring information and deciding where attention may be
+                needed. This master's project explored how machine-learning methods could add analytical tools to that
+                process, bringing several forms of analysis together in an application for water-safety planning.
+            </p>
+            <p class="mb-8 leading-relaxed">
+                The application is intended as decision support, not as an automated replacement for risk assessment
+                or professional judgement. It provides ways to explore patterns and possible future trends alongside
+                planning-oriented tools.
+            </p>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🏗️ System Architecture</h2>
+            <p class="mb-6 leading-relaxed">
+                The project follows a browser-based, multi-layer structure. A Vaadin frontend, built on Spring, provides
+                the interface; it communicates with a Python backend through REST services. The backend brings together
+                data preparation, machine-learning analysis, and planning functions.
+            </p>
+            <figure class="bg-gray-50 p-4 rounded-lg mb-8 not-prose">
+                <img src="../assets/images/projects/water-safety-architecture.png"
+                    alt="Architecture diagram showing browser clients connecting to a Vaadin and Spring frontend, which communicates with a Python backend using scikit-learn, PyTorch, and FastAPI."
+                    class="rounded-lg shadow w-full">
+                <figcaption class="text-sm text-gray-500 mt-3 text-center">
+                    High-level architecture and technologies shown in the project presentation.
+                </figcaption>
+            </figure>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🧩 Project Modules</h2>
+            <div class="space-y-5 mb-8 not-prose">
+                <div class="bg-teal-50 p-5 rounded-lg border-l-4 border-teal-500">
+                    <h3 class="font-bold text-teal-900 mb-2">1. Exploratory Clustering</h3>
+                    <p class="text-sm text-teal-800">
+                        Groups monitoring locations with similar chemical profiles, helping users explore patterns
+                        across a network. Several clustering approaches were considered; the resulting groups are
+                        presented as exploratory evidence, not as a definitive classification.
+                    </p>
+                </div>
+                <div class="bg-cyan-50 p-5 rounded-lg border-l-4 border-cyan-500">
+                    <h3 class="font-bold text-cyan-900 mb-2">2. Time-Series Forecasting</h3>
+                    <p class="text-sm text-cyan-800">
+                        Studies historical measurements to estimate future trends. Statistical, gradient-boosting, and
+                        neural approaches were explored, including SARIMAX, Prophet, LightGBM, and
+                        Kolmogorov–Arnold Networks (KAN). Forecasts are intended to complement, rather than replace,
+                        existing risk-assessment practices.
+                    </p>
+                </div>
+                <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-900 mb-2">3. Sampling-Route Prototype</h3>
+                    <p class="text-sm text-blue-800">
+                        A routing prototype explores how visits to sampling locations can be organized across multiple
+                        vehicles. It uses road-network information and Google OR-Tools to generate routes, with
+                        map-based outputs for review.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🛠️ Technology Stack</h2>
+            <div class="flex flex-wrap gap-3 mb-8 not-prose">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Java</span>
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Spring</span>
+                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">Vaadin</span>
+                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">Python</span>
+                <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-semibold">FastAPI</span>
+                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">scikit-learn</span>
+                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">PyTorch</span>
+                <span class="bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm font-semibold">LightGBM</span>
+                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">Google OR-Tools</span>
+                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">OpenStreetMap</span>
+                <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-semibold">Leaflet</span>
+            </div>
+
+            <h2 class="text-3xl font-bold border-b pb-2 mb-6">🔎 Scope and Limitations</h2>
+            <p class="mb-8 leading-relaxed">
+                The clustering component is exploratory, some forecasting approaches require further evaluation, and
+                the routing component remains a prototype. The project brings these capabilities into one application
+                to make the analyses easier to explore; it does not claim that they independently establish water
+                safety or replace expert review.
+            </p>
+
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mt-8">
+                <p class="text-amber-800 text-sm">
+                    <strong>Industry confidentiality:</strong> This page describes the architecture and methods at a
+                    portfolio level. It does not disclose protected datasets, site details, operating criteria, or
+                    private evaluation results.
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-12 text-gray-500 text-sm italic">
+        <p>Master's Thesis Project · Water-Safety Decision Support</p>
+        <p class="mt-2 text-gray-400">&copy; 2026 Davide Negri</p>
+    </footer>
+</body>
+
+</html>
