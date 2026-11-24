@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../assets/icons/PC.ico">
+    <title>CyberChallenge.IT & Local CTF @ UNIFE - Davide Negri</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Cyber/Hacker Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: #06090c;
+            color: #d1d5db;
+        }
+
+        /* Subtle Scanlines effect */
+        .scanlines {
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Glow effects */
+        .glow-green {
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.25);
+        }
+        .text-glow-green {
+            text-shadow: 0 0 8px rgba(0, 255, 127, 0.6);
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+        }
+
+        /* Access Terminal Overlay */
+        #accessOverlay {
+            position: fixed;
+            inset: 0;
+            background: #030607;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #accessOverlay.hidden-access {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #06090c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00ff7f33;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff7f88;
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen selection:bg-emerald-500 selection:text-black">
+    <!-- Scanlines overlay -->
+    <div class="scanlines fixed inset-0 z-40"></div>
+
+    <!-- HACKING BOOTUP OVERLAY -->
+    <div id="accessOverlay">
+        <div class="w-full max-w-2xl bg-black border border-emerald-500/60 rounded-xl p-6 shadow-2xl glow-green relative">
+            <!-- Top bar -->
+            <div class="flex items-center justify-between border-b border-emerald-500/30 pb-3 mb-4 text-xs text-emerald-400">
+                <div class="flex items-center space-x-2">
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <span class="ml-2 font-bold tracking-wider">[SECURE_LINK // UNIFE_NODE]</span>
+                </div>
+                <button id="skipBtn" class="text-gray-400 hover:text-emerald-300 hover:underline transition text-[11px]">
+                    [SKIP_ESC] ↵
+                </button>
+            </div>
+
+            <!-- Terminal Output Lines -->
+            <div id="terminalLog" class="text-sm space-y-2 font-mono leading-relaxed min-h-[160px]">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Bottom blinking status -->
+            <div class="mt-4 pt-3 border-t border-emerald-500/20 flex items-center justify-between text-xs text-emerald-500/70">
+                <span>STATUS: <span id="statusIndicator" class="text-amber-400 font-bold">ESTABLISHING HANDSHAKE...</span></span>
+                <span class="animate-pulse font-bold text-emerald-400">_</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN PAGE CONTENT -->
+    <header class="border-b border-emerald-500/20 bg-[#0a0f12]/90 backdrop-blur sticky top-0 z-30">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-4">
+            <a href="../index.html" class="inline-flex items-center text-sm font-semibold text-emerald-400 hover:text-emerald-300 hover:translate-x-[-2px] transition duration-200">
+                <span class="mr-2">&larr;</span> [CD .. / HOME]
+            </a>
+            <div class="flex items-center space-x-3 text-xs">
+                <span class="px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-400">
+                    NODE: UNIFE
+                </span>
+                <span class="px-2.5 py-1 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
+                    CTF OPERATOR
+                </span>
+                <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 border border-gray-700">
+                    YEAR: 2026
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-10 space-y-12">
+        <!-- HERO SECTION -->
+        <section class="relative bg-gradient-to-b from-[#0b1418] to-[#070b0e] border border-emerald-500/30 rounded-2xl p-6 md:p-10 glow-green overflow-hidden">
+            <!-- Decorative tech grid corner marks -->
+            <div class="absolute top-3 left-3 text-emerald-500/40 text-xs">┌─[SEC://REPORT]</div>
+            <div class="absolute top-3 right-3 text-emerald-500/40 text-xs">─┐</div>
+            <div class="absolute bottom-3 left-3 text-emerald-500/40 text-xs">└─</div>
+            <div class="absolute bottom-3 right-3 text-emerald-500/40 text-xs">─┘</div>
+
+            <div class="max-w-3xl space-y-4">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-xs font-bold tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>CYBERSECURITY NATIONAL LAB • CINI</span>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight text-glow-green">
+                    CyberChallenge.IT &amp; <br class="hidden sm:inline">Local CTF Competition
+                </h1>
+                <p class="text-cyan-300 font-medium text-base md:text-lg text-glow-cyan">
+                    Percorso di Alta Formazione in Cybersecurity &amp; Gara Finale Locale presso l'Università di Ferrara
+                </p>
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed pt-2">
+                    Partecipazione al programma nazionale CyberChallenge.IT: mesi di formazione teorica e pratica intensiva
+                    sulle moderne metodologie di sicurezza offensiva, analisi di vulnerabilità, crittografia e difesa dei sistemi, 
+                    culminata nella competizione <strong>Capture The Flag (CTF)</strong> locale del nodo di Ferrara.
+                </p>
+            </div>
+        </section>
+
+        <!-- 01_OVERVIEW & OBJECTIVES -->
+        <section class="space-y-4">
+            <h2 class="text-xl font-bold text-emerald-400 flex items-center space-x-2">
+                <span class="text-gray-500">01 //</span>
+                <span>PANORAMICA DEL PROGRAMMA</span>
+            </h2>
+            <div class="bg-[#0b1216] border border-gray-800 rounded-xl p-6 text-sm text-gray-300 leading-relaxed space-y-4">
+                <p>
+                    <strong>CyberChallenge.IT</strong> è il primo programma di addestramento in cybersecurity per giovani talenti in Italia, 
+                    organizzato dal <em>Cybersecurity National Lab</em> del CINI (Consorzio Interuniversitario Nazionale per l'Informatica).
+                    Il percorso mira a colmare lo shortage di competenze nel settore della sicurezza informatica attraverso un approccio hands-on basato su sfide realistiche.
+                </p>
+                <p>
+                    Selezionato per il nodo dell'<strong>Università di Ferrara (UNIFE)</strong>, ho preso parte alle lezioni settimanali e alle sessioni di laboratorio pratico, 
+                    approfondendo le architetture di rete, i meccanismi crittografici, la sicurezza applicativa e le tecniche di exploit analysis.
+                </p>
+            </div>
+        </section>
+
+        <!-- 02_CORE ATTACK VECTORS & SKILLS -->
+        <section class="space-y-6">
+            <h2 class="text-xl font-bold text-emerald-400 flex items-center space-x-2">
+                <span class="text-gray-500">02 //</span>
+                <span>DOMINI E VETTORI DI ATTACCO ESPLORATI</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1: Web Security -->
+                <div class="bg-[#0a1014] border border-emerald-500/30 rounded-xl p-5 hover:border-emerald-400 transition-colors duration-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-emerald-300 text-base">🌐 Web Security &amp; Exploitation</h3>
+                        <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded">OWASP</span>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-3">
+                        Studio e sfruttamento delle vulnerabilità web moderne: SQL Injection, Cross-Site Scripting (XSS), 
+                        Cross-Site Request Forgery (CSRF), Server-Side Request Forgery (SSRF), Server-Side Template Injection (SSTI) 
+                        e vulnerabilità di autenticazione o business logic.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-gray-400">
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">Burp Suite</span>
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">SQLMap</span>
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">Session Hijack</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Cryptography -->
+                <div class="bg-[#0a1014] border border-cyan-500/30 rounded-xl p-5 hover:border-cyan-400 transition-colors duration-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-cyan-300 text-base">🔐 Cryptography &amp; PKI</h3>
+                        <span class="text-[10px] bg-cyan-950 text-cyan-400 border border-cyan-800 px-2 py-0.5 rounded">MATH &amp; CIPHERS</span>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-3">
+                        Analisi crittografica di cifrari classici e moderni: crittografia simmetrica (AES modes, padding oracle attacks), 
+                        asimmetrica (RSA attacks, Wiener, Hastad, Coppersmith), funzioni di hash crittografiche, Diffie-Hellman e curve ellittiche.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-gray-400">
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">SageMath</span>
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">PyCryptodome</span>
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">RSA Attacks</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Binary & Reverse Engineering -->
+                <div class="bg-[#0a1014] border border-amber-500/30 rounded-xl p-5 hover:border-amber-400 transition-colors duration-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-amber-300 text-base">⚙️ Software Security &amp; RevEng</h3>
+                        <span class="text-[10px] bg-amber-950 text-amber-400 border border-amber-800 px-2 py-0.5 rounded">BIN &amp; ASM</span>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-3">
+                        Decompilazione e reversing di eseguibili (architetture x86/x64). Analisi statica e dinamica del codice macchina, 
+                        buffer overflow dello stack, bypass delle protezioni di memoria e shellcoding.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-gray-400">
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">Ghidra</span>
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">GDB / Pwndbg</span>
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">Pwntools</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Network Security -->
+                <div class="bg-[#0a1014] border border-purple-500/30 rounded-xl p-5 hover:border-purple-400 transition-colors duration-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-bold text-purple-300 text-base">📡 Network Defense &amp; Forensics</h3>
+                        <span class="text-[10px] bg-purple-950 text-purple-400 border border-purple-800 px-2 py-0.5 rounded">PCAP</span>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-3">
+                        Cattura e ispezione dei pacchetti di rete, analisi forense di file .pcap, protocolli applicativi (HTTP, DNS, TLS), 
+                        individuazione di canali covert, attacchi man-in-the-middle e ricostruzione delle sessioni esfiltrate.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 text-[11px] font-mono text-gray-400">
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">Wireshark</span>
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">Tcpdump</span>
+                        <span class="bg-black/50 px-2 py-0.5 rounded border border-gray-800">Scapy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03_THE CTF COMPETITION -->
+        <section class="space-y-4">
+            <h2 class="text-xl font-bold text-emerald-400 flex items-center space-x-2">
+                <span class="text-gray-500">03 //</span>
+                <span>LA GARA LOCALE CTF @ UNIFE</span>
+            </h2>
+            <div class="bg-[#090e11] border border-emerald-500/40 rounded-xl p-6 space-y-4 text-sm text-gray-300">
+                <div class="flex items-center space-x-3 text-amber-300 font-bold text-base">
+                    <span>🚩 Modalità Jeopardy • Time-Bound Challenge</span>
+                </div>
+                <p class="leading-relaxed">
+                    Al termine delle sessioni didattiche, tutti i partecipanti del nodo UNIFE si sono sfidati nella 
+                    <strong>competizione finale locale</strong>. La gara si è svolta in formato Jeopardy su un'infrastruttura ad hoc:
+                    ogni sfida nascondeva una <em>flag</em> (una stringa univoca del formato <code class="text-emerald-400 bg-black/60 px-1 py-0.5 rounded">CCIT{...}</code>) 
+                    ottenibile solo individuando e sfruttando con successo la specifica vulnerabilità del servizio bersaglio.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-center">
+                    <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
+                        <div class="text-lg font-bold text-emerald-400">Multi-Category</div>
+                        <div class="text-xs text-gray-400">Web, Crypto, Binary, Misc</div>
+                    </div>
+                    <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
+                        <div class="text-lg font-bold text-cyan-400">Real-Time Scoreboard</div>
+                        <div class="text-xs text-gray-400">Dinamica dei punteggi live</div>
+                    </div>
+                    <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
+                        <div class="text-lg font-bold text-amber-400">Attestato Ufficiale</div>
+                        <div class="text-xs text-gray-400">Rilasciato da CINI &amp; UNIFE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04_CERTIFICATE TERMINAL -->
+        <section class="space-y-4">
+            <h2 class="text-xl font-bold text-emerald-400 flex items-center space-x-2">
+                <span class="text-gray-500">04 //</span>
+                <span>ATTESTATO DI PARTECIPAZIONE</span>
+            </h2>
+
+            <div class="bg-[#0b1418] border border-emerald-500/50 rounded-xl p-6 glow-green space-y-6">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <span>📜 Attestato di Merito / Partecipazione</span>
+                            <span class="text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded font-mono">VERIFIED</span>
+                        </h3>
+                        <p class="text-xs text-gray-400 mt-1">
+                            Rilasciato dal Cybersecurity National Lab per la partecipazione a CyberChallenge.IT e alla competizione locale.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <a href="../assets/docs/CCIT2026 - Certificato di Partecipazione - NEGRI Davide.pdf" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center px-4 py-2 rounded-lg bg-emerald-500 text-black font-bold text-xs hover:bg-emerald-400 transition shadow">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            Visualizza Attestato (PDF)
+                        </a>
+                        <!-- <a href="../assets/docs/CCIT2026 - Certificato di Partecipazione - NEGRI Davide.pdf" download="Attestato_CyberChallenge_Davide_Negri.pdf"
+                            class="inline-flex items-center px-4 py-2 rounded-lg bg-black border border-emerald-500/40 text-emerald-400 font-bold text-xs hover:bg-emerald-950 transition">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Scarica PDF
+                        </a> -->
+                    </div>
+                </div>
+
+                <!-- PDF Embedded Viewer / Box Preview -->
+                <div class="w-full bg-black/60 rounded-lg border border-gray-800 overflow-hidden">
+                    <div class="bg-gray-900 px-4 py-2 border-b border-gray-800 text-xs text-gray-400 flex items-center justify-between">
+                        <span class="font-mono">preview://cyberchallenge-certificate.pdf</span>
+                        <span class="text-emerald-400 font-mono text-[11px]">[PDF Document]</span>
+                    </div>
+                    <div class="p-2 sm:p-4">
+                        <iframe src="../assets/docs/CCIT2026 - Certificato di Partecipazione - NEGRI Davide.pdf" class="w-full h-[450px] rounded border border-gray-800 bg-gray-950" title="Attestato CyberChallenge.IT">
+                            <p class="text-center text-sm text-gray-400 py-10">
+                                Il tuo browser non supporta l'anteprima diretta del PDF. 
+                                <a href="../assets/docs/cyberchallenge-certificate.pdf" class="text-emerald-400 underline" target="_blank">Clicca qui per aprirlo</a>.
+                            </p>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER NAV -->
+        <div class="pt-8 pb-12 border-t border-emerald-500/20 text-center">
+            <a href="../index.html" class="inline-flex items-center px-6 py-3 rounded-xl bg-gray-900 border border-emerald-500/40 text-emerald-400 text-sm font-bold hover:bg-emerald-950 hover:border-emerald-400 transition shadow-lg glow-green">
+                &larr; Torna alla Homepage Principale
+            </a>
+        </div>
+    </main>
+
+    <!-- HACKING BOOTUP ANIMATION SCRIPT -->
+    <script>
+        const logs = [
+            { text: "[INIT] Inizializzazione link cifrato verso node://unife-cybersec...", delay: 100 },
+            { text: "[DNS] Risoluzione record CINI CyberChallenge National Lab...", delay: 250 },
+            { text: "[AUTH] Verifica chiavi crittografiche SSH RSA-4096... [OK]", delay: 450 },
+            { text: "[BYPASS] Scansione regole firewall e privilege escalation...", delay: 700 },
+            { text: "[PORT_SCAN] Analisi porte bersaglio CTF (Web, Crypto, Binary, Network)... [READY]", delay: 950 },
+            { text: "[OPERATOR] Davide Negri identificato con credenziali di livello 5.", delay: 1200 },
+            { text: "[ACCESS GRANTED] Accesso completato. Benvenuto nella dashboard.", delay: 1450 }
+        ];
+
+        const logContainer = document.getElementById('terminalLog');
+        const overlay = document.getElementById('accessOverlay');
+        const statusIndicator = document.getElementById('statusIndicator');
+        const skipBtn = document.getElementById('skipBtn');
+
+        let isSkipped = false;
+
+        function closeOverlay() {
+            if (isSkipped) return;
+            isSkipped = true;
+            statusIndicator.textContent = "ACCESS GRANTED";
+            statusIndicator.className = "text-emerald-400 font-bold";
+            setTimeout(() => {
+                overlay.classList.add('hidden-access');
+            }, 300);
+        }
+
+        // Add lines dynamically
+        logs.forEach((item, index) => {
+            setTimeout(() => {
+                if (isSkipped) return;
+                const p = document.createElement('p');
+                p.className = index === logs.length - 1 
+                    ? 'text-emerald-400 font-bold text-glow-green text-xs sm:text-sm' 
+                    : 'text-gray-300 text-xs sm:text-sm';
+                p.textContent = item.text;
+                logContainer.appendChild(p);
+
+                if (index === logs.length - 1) {
+                    setTimeout(closeOverlay, 500);
+                }
+            }, item.delay);
+        });
+
+        // Skip buttons / events
+        skipBtn.addEventListener('click', closeOverlay);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+                closeOverlay();
+            }
+        });
+    </script>
+</body>
+
+</html>
